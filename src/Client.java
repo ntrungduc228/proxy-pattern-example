@@ -30,10 +30,8 @@ public class Client {
         UserService stub = (UserService) UnicastRemoteObject.exportObject(userService, 0);
         // Create and start the RMI registry
         LocateRegistry.createRegistry(8080);
-
         // Bind the remote object to the registry
         Naming.rebind("rmi://localhost:8080/UserService", stub);
-
         RemoteProxy remoteProxy = new RemoteProxy("rmi://localhost:8080/UserService");
         // Call the getInfo() method on the RemoteProxy
         remoteProxy.getInfo();
