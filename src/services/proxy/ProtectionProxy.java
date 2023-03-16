@@ -4,6 +4,7 @@ import services.UserService;
 import services.UserServiceImpl;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class ProtectionProxy implements UserService{
     private String role;
@@ -15,7 +16,7 @@ public class ProtectionProxy implements UserService{
     }
 
     @Override
-    public void getInfo() throws IllegalAccessException, IOException {
+    public void getInfo() throws IllegalAccessException, RemoteException {
         if ((isAdmin())){
             userService.getInfo();
         }else {
@@ -24,7 +25,7 @@ public class ProtectionProxy implements UserService{
     }
 
     @Override
-    public void updateInfo() throws IllegalAccessException {
+    public void updateInfo() throws IllegalAccessException, RemoteException {
         if ((isAdmin())){
             userService.updateInfo();
         }else {

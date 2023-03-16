@@ -4,6 +4,7 @@ import services.UserService;
 
 import java.io.IOException;
 import java.lang.ref.Cleaner;
+import java.rmi.RemoteException;
 
 public class SmartProxy  implements UserService {
    private  UserService userService;
@@ -21,7 +22,7 @@ public class SmartProxy  implements UserService {
     }
 
     @Override
-    public void getInfo() throws IOException, IllegalAccessException {
+    public void getInfo() throws IllegalAccessException, RemoteException {
         this.count += 1;
         this.userService.getInfo();
     }

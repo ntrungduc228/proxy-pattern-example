@@ -4,11 +4,12 @@ import services.UserService;
 import services.UserServiceImpl;
 
 import java.io.IOException;
+import java.rmi.RemoteException;
 
 public class VirtualProxy implements UserService {
     private UserService userService;
     @Override
-    public void getInfo() throws IOException, IllegalAccessException {
+    public void getInfo() throws IllegalAccessException, RemoteException {
         if(userService == null){
             userService = new UserServiceImpl();
         }
@@ -17,7 +18,7 @@ public class VirtualProxy implements UserService {
     }
 
     @Override
-    public void updateInfo() throws IllegalAccessException {
+    public void updateInfo() throws IllegalAccessException, RemoteException {
         if(userService == null){
             userService = new UserServiceImpl();
         }

@@ -1,39 +1,29 @@
 package services.proxy;
 
 import services.UserService;
-import services.UserServiceImpl;
-
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.ProtocolException;
-import java.net.URL;
+
+import java.net.MalformedURLException;
+import java.rmi.Naming;
+import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 
 public class RemoteProxy implements UserService {
-    private String url;
+
     private UserService userService;
 
-    public RemoteProxy(String url) {
-        this.url = url;
-        this.userService = new UserServiceImpl();
+    public RemoteProxy(String remoteServiceURL) throws MalformedURLException, RemoteException, NotBoundException {
+        this.userService = (UserService) Naming.lookup(remoteServiceURL);
     }
 
     @Override
-    public void getInfo() throws IOException {
-        URL url = new URL(this.url);
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-
-        BufferedReader in = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        String response = in.readLine();
-        System.out.println("response " + response);
-        in.close();
+    public void getInfo() throws IllegalAccessException, RemoteException {
+        this.userService.getInfo();
     }
 
     @Override
-    public void updateInfo() throws IllegalAccessException {
-
+    public void updateInfo() throws IllegalAccessException, RemoteException {
+        this.userService.updateInfo();
     }
 
 }
