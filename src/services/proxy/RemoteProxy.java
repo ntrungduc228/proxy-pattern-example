@@ -35,4 +35,5 @@ public class RemoteProxy implements UserService {
     public void updateInfo() throws IllegalAccessException {
 
     }
+
 }

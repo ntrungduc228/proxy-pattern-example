@@ -36,5 +36,4 @@ public class ProtectionProxy implements UserService{
         return "admin".equalsIgnoreCase(this.role);
     }
 
-
 }

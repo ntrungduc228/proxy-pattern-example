@@ -9,5 +9,6 @@ public class UserServiceImpl implements UserService{
     @Override
     public void updateInfo() {
         System.out.println("Update info from UserServiceImpl");
+
     }
 }
