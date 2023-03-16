@@ -1,22 +1,21 @@
 import services.UserService;
 import services.UserServiceImpl;
+import services.proxy.ProtectionProxy;
 import services.proxy.RemoteProxy;
 import services.proxy.SmartProxy;
+import services.proxy.VirtualProxy;
 
 import java.io.IOException;
 import java.lang.reflect.Proxy;
+import java.net.MalformedURLException;
 import java.rmi.Naming;
 import java.rmi.NotBoundException;
+import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.server.UnicastRemoteObject;
 
 public class Client {
-    public static void main(String[] args) throws IOException, IllegalAccessException, NotBoundException {
-
-        System.out.println("VIRTUAL PROXY");
-
-
-        System.out.println("PROTECTION PROXY");
+    void demoSmartProxy() throws RemoteException, IllegalAccessException {
         System.out.println("SMART PROXY");
         UserService user = new UserServiceImpl();
         SmartProxy userProxy = new SmartProxy(user);
@@ -24,7 +23,26 @@ public class Client {
         userProxy.getInfo();
         userProxy.removeReference();
         userProxy.removeReference();
-//        userProxy.getInfo();
+        userProxy.getInfo();
+    }
+
+    void demoVirtualProxy() throws RemoteException, IllegalAccessException {
+        System.out.println("VIRTUAL PROXY");
+        VirtualProxy userProxy = new VirtualProxy();
+        userProxy.getInfo();
+        userProxy.getInfo();
+    }
+
+    void demoProtectionProxy() throws RemoteException, IllegalAccessException {
+        System.out.println("PROTECTION PROXY");
+        ProtectionProxy adminProxy = new ProtectionProxy("admin");
+        adminProxy.getInfo();
+
+        ProtectionProxy userProxy = new ProtectionProxy("user");
+        userProxy.getInfo();
+    }
+
+    void demoRemoteProxy() throws RemoteException, MalformedURLException, NotBoundException, IllegalAccessException {
         System.out.println("REMOTE PROXY");
         UserService userService = new UserServiceImpl();
         UserService stub = (UserService) UnicastRemoteObject.exportObject(userService, 0);
@@ -37,5 +55,14 @@ public class Client {
         remoteProxy.getInfo();
         // Call the updateInfo() method on the RemoteProxy
         remoteProxy.updateInfo();
+    }
+
+    public static void main(String[] args) throws IOException, IllegalAccessException, NotBoundException {
+        Client client = new Client();
+//        client.demoRemoteProxy();
+//    client.demoVirtualProxy();
+//    client.demoProtectionProxy();
+    client.demoSmartProxy();
+
     }
 }
