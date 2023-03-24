@@ -1,5 +1,3 @@
-package services;
-
 public class ImageProxy implements Image {
     private String imageFilePath;
     private Image realImage;

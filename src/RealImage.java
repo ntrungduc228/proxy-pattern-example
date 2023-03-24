@@ -1,5 +1,3 @@
-package services;
-
 import java.util.concurrent.TimeUnit;
 
 public class RealImage implements Image {
