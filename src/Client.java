@@ -63,10 +63,8 @@ public class Client {
 
 
     public static void main(String[] args) throws IOException, IllegalAccessException, NotBoundException, InterruptedException {
-//        Client client = new Client();
-        UserService remote = (UserService) Naming.lookup("rmi://localhost:8080/UserService");
-        remote.updateInfo();
-//        client.demoImageProxy();
+        Client client = new Client();
+        client.demoImageProxy();
 //        client.demoRemoteProxy();
 //    client.demoVirtualProxy();
 //    client.demoProtectionProxy();
