@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.rmi.RemoteException;
 
 public class ProtectionProxy implements UserService{
-    private String role;
-    private UserService userService;
+    private final String role;
+    private final UserService userService;
 
     public ProtectionProxy(String role) {
         this.role = role;

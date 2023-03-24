@@ -1,6 +1,7 @@
 package services.proxy;
 
 import services.UserService;
+import services.UserServiceImpl;
 
 import java.io.IOException;
 import java.lang.ref.Cleaner;
@@ -9,8 +10,8 @@ import java.rmi.RemoteException;
 public class SmartProxy  implements UserService {
    private  UserService userService;
    private int count;
-    public SmartProxy(UserService userService) {
-        this.userService = userService;
+    public SmartProxy() {
+        this.userService = new UserServiceImpl();
         this.count = 0;
     }
     public void removeReference() {

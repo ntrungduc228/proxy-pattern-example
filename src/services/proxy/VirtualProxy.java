@@ -13,7 +13,6 @@ public class VirtualProxy implements UserService {
         if(userService == null){
             userService = new UserServiceImpl();
         }
-
         userService.getInfo();
     }
 
