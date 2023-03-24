@@ -1,12 +1,3 @@
-import services.*;
-import services.proxy.ProtectionProxy;
-import services.proxy.RemoteProxy;
-import services.proxy.SmartProxy;
-import services.proxy.VirtualProxy;
-
-import java.net.MalformedURLException;
-import java.rmi.NotBoundException;
-import java.rmi.RemoteException;
 
 public class Client {
 
